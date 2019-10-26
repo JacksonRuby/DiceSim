@@ -1,0 +1,80 @@
+﻿<!--
+ * FILE         : MainWindow.xaml
+ * PROJECT      : Assignment 5 - Dice Roll Simulator
+ * PROGRAMMER   : Group 3
+ * DATE         : Oct. 8, 2019
+ * DESCRIPTION  :
+ *      Rolls two dice and saves roll outcomes to a file.
+ -->
+
+<Window x:Class="DiceSim.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DiceSim"
+        mc:Ignorable="d"
+        Title="Dice Roll Simulator" Height="450" Width="1000"
+        MinHeight="450" MinWidth="1000" Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".6*"></ColumnDefinition>
+            <ColumnDefinition Width=".6*"></ColumnDefinition>
+            <ColumnDefinition Width="460" MinWidth="460"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height=".2*"></RowDefinition>
+            <RowDefinition Height=".5*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!-- menu items -->
+        <DockPanel Grid.ColumnSpan="3">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Name="menuRollSpeed" Header="Roll Speed" MinHeight="30">
+                    <MenuItem Name="menuCheckSetSpeedImmediate" Tag="0" Header="_Immediate" MinHeight="30" 
+                              IsCheckable="True" Checked="MenuCheck" Click="MenuCheck"/>
+                    <MenuItem Name="menuCheckSetSpeedFaster" Tag="1" Header="_Faster" MinHeight="30" 
+                              IsCheckable="True" Checked="MenuCheck" Click="MenuCheck"/>
+                    <MenuItem Name="menuCheckSetSpeedFast" Tag="2" Header="_Fast" MinHeight="30" 
+                              IsCheckable="True" Checked="MenuCheck" Click="MenuCheck"/>
+                    <MenuItem Name="menuCheckSetSpeedModerate" Tag="3" Header="_Moderate" MinHeight="30" 
+                              IsCheckable="True" Checked="MenuCheck" Click="MenuCheck"
+                              IsChecked="True"/>
+                    <MenuItem Name="menuCheckSetSpeedSlow" Tag="4" Header="_Slow" MinHeight="30" 
+                              IsCheckable="True" Checked="MenuCheck" Click="MenuCheck"/>
+                    <MenuItem Name="menuCheckSetSpeedSlower" Tag="5" Header="_Slower" MinHeight="30" 
+                              IsCheckable="True" Checked="MenuCheck" Click="MenuCheck"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+
+        <!-- dice images -->
+        <Image Name="imgDice1" Grid.Column="0" Grid.Row="1" Margin="5"></Image>
+        <Image Name="imgDice2" Grid.Column="1" Grid.Row="1" Margin="5"></Image>
+
+        <!-- progress bar -->
+        <ProgressBar Name="rollProgressBar" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
+                     Margin="5" Minimum="0" Maximum="20" BorderBrush="#FFBB0000" Foreground="#FFE50000">
+            <ProgressBar.Background>
+                <SolidColorBrush Color="#FFE6E6E6" Opacity="0"/>
+            </ProgressBar.Background>
+        </ProgressBar>
+
+        <!-- roll button -->
+        <Viewbox Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" >
+            <Button Name="btnRoll" Content="Roll!" FontSize="72"                 
+                Margin="10" Click="BtnRoll_Click"
+                MaxWidth="200" MinWidth="200"
+                MinHeight="100"></Button>
+        </Viewbox>
+
+        <!-- output list -->
+        <ListView Name="listOutput" FontSize="19" 
+                  Grid.Column="2" Grid.Row="1" Grid.RowSpan="3"
+                  Margin="10" VerticalAlignment="Top"
+                  BorderBrush="#00000000"></ListView>
+
+    </Grid>
+</Window>
